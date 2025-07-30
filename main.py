@@ -172,24 +172,19 @@
 
 import streamlit as st
 import google.generativeai as genai
-from dotenv import load_dotenv
-import os
 
-# Carrega variáveis do .env
-load_dotenv()
-
-# Pega a chave da variável de ambiente
-api_key = os.getenv("GEMINI_API_KEY")
+# -- Pega a chave da API do secrets do Streamlit Cloud --
+api_key = st.secrets["GOOGLE_API_KEY"]
 
 # -- CONFIGURAR CHAVE GEMINI --
 genai.configure(api_key=api_key)
 
-# Modelo Gemini
+# -- MODELO GEMINI --
 modelo = genai.GenerativeModel("gemini-1.5-flash")
 
 # -- APP STREAMLIT --
 st.set_page_config("Chatbot Geral com Gemini", layout="centered")
-st.title("🤖 Chatbot Inteligente com Gemini")
+st.title("Chatbot Inteligente com Gemini")
 
 pergunta = st.text_input("Digite sua pergunta:")
 
